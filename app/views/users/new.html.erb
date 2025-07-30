@@ -1,0 +1,21 @@
+<div class="form-section">
+  <h2>Register New Account</h2>
+
+  <%= form_with(model: @user, url: users_path, local: true) do |form| %>
+    
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Enter your name", required: true %>
+
+    <%= form.label :email %>
+    <%= form.email_field :email, placeholder: "Enter your email", required: true %>
+
+    <%= form.label :password %>
+    <%= form.password_field :password, placeholder: "Create a password", required: true %>
+
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, placeholder: "Re-enter password", required: true %>
+
+    <%= form.submit "Create Account" %>
+
+  <% end %>
+</div>

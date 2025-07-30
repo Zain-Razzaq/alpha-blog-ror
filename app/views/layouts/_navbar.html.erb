@@ -1,0 +1,27 @@
+
+<nav class="navbar" id="navbar">
+    <div class="logo">🌟</div>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'All Blogs', blogs_path %>
+      <%= link_to 'New Blog', new_blog_path %>
+      <%= link_to 'Log Out', logout_path %>
+    </div>
+
+    <div class="search-container" id="searchContainer">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+  </nav>
+
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+</script>

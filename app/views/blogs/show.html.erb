@@ -1,0 +1,10 @@
+<div class="blog-details">
+  <h2><%= @blog.title %></h2>
+    <p class="blog-author">By <strong><%= @blog.user.name %></strong> on <%= @blog.created_at.strftime("%B %d, %Y") %></p>
+  <p class="blog-content"><%= simple_format(@blog.content) %></p>
+
+  <div class="blog-actions">
+    <%= link_to "Edit", edit_blog_path(@blog), class: "btn edit-btn" %>
+    <%= link_to "Delete", blog_path(@blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn delete-btn" %>
+  </div>
+</div>
