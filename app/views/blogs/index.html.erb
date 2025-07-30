@@ -10,7 +10,7 @@
 
         <div class="card-actions">
             <%= link_to "Edit", edit_blog_path(blog), class: "btn edit-btn" %>
-            <%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn delete-btn" %>
+            <%= button_to "Delete", blog_path(blog), method: :delete, class: "btn delete-btn", style: "margin: 0;" %>
         </div>
         </div>
     <% end %>

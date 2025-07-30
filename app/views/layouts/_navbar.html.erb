@@ -8,7 +8,7 @@
       <%= link_to 'Home', root_path %>
       <%= link_to 'All Blogs', blogs_path %>
       <%= link_to 'New Blog', new_blog_path %>
-      <%= link_to 'Log Out', logout_path %>
+      <%= button_to 'Log Out', logout_path, method: :delete, data: { confirm: "Are you sure?" }, style: "margin: 0;" %>
     </div>
 
     <div class="search-container" id="searchContainer">
