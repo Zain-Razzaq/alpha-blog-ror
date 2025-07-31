@@ -20,7 +20,9 @@ body {
     background-color: #f9f9f9;
     color: #333;
 }
-
+h2{
+    margin-top: 20px;
+}
 /* Navbar Styles */
 .navbar {
     display: flex;
@@ -358,4 +360,11 @@ form button:hover {
 
 .profile-link:hover {
     color: #0056b3;
+}
+
+.content-section {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

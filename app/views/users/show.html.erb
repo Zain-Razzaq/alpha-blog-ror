@@ -1,8 +1,12 @@
-<div class="home">
-    <h1>All Blogs</h1>
-    <div class="blog-list">
-    <% @blogs.each do |blog| %>
-        <div class="blog-card">
+<div class="content-section">
+  <h1>User Profile</h1>
+  <p><strong>Name:</strong> <%= @user.name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+
+  <h2>Blogs by <%= @user.name %></h2>
+  <div class="blog-list">
+    <% @user.blogs.each do |blog| %>
+      <div class="blog-card">
             <%= link_to truncate(blog.title, length: 20), blog_path(blog), class: "blog-link" %>
             <p><%= truncate(blog.content, length: 150) %></p>
             <p class="blog-author">By <strong><%= blog.user.name %></strong> on <%= blog.created_at.strftime("%B %d, %Y") %></p>
@@ -13,5 +17,5 @@
             </div>
         </div>
     <% end %>
-    </div>
+  </div>
 </div>
