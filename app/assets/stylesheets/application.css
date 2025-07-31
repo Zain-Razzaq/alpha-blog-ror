@@ -35,6 +35,8 @@ body {
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
 }
 
 .nav-links {
@@ -60,9 +62,9 @@ body {
     gap: 5px;
 }
 
-.search-container input {
+.search-container input, input {
     padding: 6px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
 
@@ -149,7 +151,7 @@ form label {
     margin-top: 15px;
 }
 
-form input[type="text"],
+form input,
 form textarea {
     padding: 10px;
     font-size: 16px;
@@ -246,14 +248,14 @@ form button:hover {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 500px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .blog-card h3 {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .blog-card p {
@@ -264,7 +266,8 @@ form button:hover {
 
 .card-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+    gap: 40px;
   margin-top: 15px;
 }
 
