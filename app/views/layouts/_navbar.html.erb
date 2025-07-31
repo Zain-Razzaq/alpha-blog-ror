@@ -7,20 +7,15 @@
       <%= link_to 'Home', root_path %>
       <%= link_to 'All Blogs', blogs_path %>
       <%= link_to 'New Blog', new_blog_path %>
-      <%= button_to 'Log Out', logout_path, method: :delete, data: { confirm: "Are you sure?" }, style: "margin: 0;" %>
     </div>
 
     <div class="search-container" id="searchContainer">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
+    <% if user_logged_in? %>
+    <%= link_to current_user.email, user_path(current_user), class: "profile-link" %>
+        <%= button_to 'Log Out', logout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn logout-btn" %>
+    <% else %>
+        <%= link_to 'Log In', login_path, class: "btn submit-button" %>
+        <%= link_to 'Sign Up', register_path, class: "btn submit-button" %>
+    <% end %>
     </div>
-  </nav>
-
-  <script>
-    const toggle = document.getElementById("menuToggle");
-    const navbar = document.getElementById("navbar");
-
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
-    });
-</script>
+</nav>

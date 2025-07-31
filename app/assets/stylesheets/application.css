@@ -110,20 +110,6 @@ body {
     margin-top: 40px;
 }
 
-.button-container a {
-    text-decoration: none;
-    padding: 12px 24px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 6px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
-
-.button-container a:hover {
-    background-color: #2980b9;
-}
-
 /* Blog Form */
 .form-section {
     max-width: 600px;
@@ -158,6 +144,7 @@ form textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: vertical;
+    margin-bottom: 10px;
 }
 
 form textarea {
@@ -165,7 +152,7 @@ form textarea {
 }
 
 form button , .submit-button{
-    margin-top: 25px;
+    margin-top: 20px;
     padding: 12px;
     font-size: 16px;
     background-color: #3498db;
@@ -273,6 +260,7 @@ form button:hover {
 
 .btn {
   padding: 8px 12px;
+  margin-top: 0;
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -281,12 +269,7 @@ form button:hover {
   transition: 0.2s ease;
 }
 
-.edit-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-.edit-btn:hover {
+.btn:hover {
   background-color: #0056b3;
 }
 
@@ -364,4 +347,15 @@ form button:hover {
 
 .delete-btn:hover {
   background-color: #a71d2a;
+}
+
+.profile-link{
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.profile-link:hover {
+    color: #0056b3;
 }
