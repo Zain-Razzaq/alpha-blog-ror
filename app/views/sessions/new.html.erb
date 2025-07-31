@@ -1,7 +1,7 @@
 <div class="form-section">
   <h2>Login to Your Account</h2>
 
-  <%= form_with url: login_path, local: true do |form| %>
+  <%= form_with url: login_path, data: { turbo: false }, local: true do |form| %>
 
     <%= form.label :email %>
     <%= form.email_field :email, placeholder: "Enter your email", required: true %>

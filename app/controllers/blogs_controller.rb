@@ -1,6 +1,8 @@
 
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :require_owner, only: [:edit, :update, :destroy]
 
   def index
     @blogs = Blog.all
@@ -19,8 +21,7 @@ class BlogsController < ApplicationController
     if @blog.save
       redirect_to @blog, notice: 'Blog was successfully created.'
     else
-      flash.now[:alert] = 'Error creating blog.'
-      render :new
+      redirect_to new_blog_path, alert: 'Error creating blog.'
     end
   end
 
@@ -31,6 +32,7 @@ class BlogsController < ApplicationController
     if @blog.update(blog_params)
       redirect_to @blog, notice: 'Blog was successfully updated.'
     else
+      flash.now[:alert] = @blog.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -41,15 +43,18 @@ class BlogsController < ApplicationController
   end
 
   private
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
   def set_blog
     @blog = Blog.find(params[:id])
   end
 
   def blog_params
     params.require(:blog).permit(:title, :content)
+  end
+
+  def require_owner
+    unless user_logged_in? && current_user == @blog.user
+      flash[:alert] = "You don't have permission to perform this action."
+      redirect_to blogs_path
+    end
   end
 end

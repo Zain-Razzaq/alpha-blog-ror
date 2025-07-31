@@ -1,8 +1,8 @@
 <div class="form-section">
   <h2>Register New Account</h2>
 
-  <%= form_with(model: @user, url: users_path, local: true) do |form| %>
-    
+  <%= form_with(model: @user, url: users_path,data: { turbo: false }, local: true) do |form| %>
+
     <%= form.label :name %>
     <%= form.text_field :name, placeholder: "Enter your name", required: true %>
 

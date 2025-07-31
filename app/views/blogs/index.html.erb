@@ -7,10 +7,12 @@
             <p><%= truncate(blog.content, length: 150) %></p>
             <p class="blog-author">By <strong><%= blog.user.name %></strong> on <%= blog.created_at.strftime("%B %d, %Y") %></p>
 
-            <div class="card-actions">
-                <%= link_to "Edit", edit_blog_path(blog), class: "btn edit-btn" %>
-                <%= button_to "Delete", blog_path(blog), method: :delete, class: "btn delete-btn", style: "margin: 0;" %>
-            </div>
+            <% if user_logged_in? && current_user == blog.user %>
+                <div class="card-actions">
+                    <%= link_to "Edit", edit_blog_path(blog), class: "btn edit-btn" %>
+                    <%= button_to "Delete", blog_path(blog), method: :delete, class: "btn delete-btn", style: "margin: 0;" %>
+                </div>
+            <% end %>
         </div>
     <% end %>
     </div>

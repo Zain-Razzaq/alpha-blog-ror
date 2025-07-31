@@ -6,7 +6,9 @@
     <div class="nav-links" id="navLinks">
       <%= link_to 'Home', root_path %>
       <%= link_to 'All Blogs', blogs_path %>
-      <%= link_to 'New Blog', new_blog_path %>
+      <% if user_logged_in? %>
+        <%= link_to 'New Blog', new_blog_path %>
+      <% end %>
     </div>
 
     <div class="search-container" id="searchContainer">
