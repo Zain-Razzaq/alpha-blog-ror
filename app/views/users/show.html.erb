@@ -1,5 +1,5 @@
 <div class="content-section">
-  <h1>User Profile</h1>
+  <%= @user.admin? ? "<h1>Admin Profile</h1>".html_safe : "<h1>User Profile</h1>".html_safe %>
   <p><strong>Name:</strong> <%= @user.name %></p>
   <p><strong>Email:</strong> <%= @user.email %></p>
 

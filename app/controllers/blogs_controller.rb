@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
   end
 
   def require_owner
-    unless user_logged_in? && current_user == @blog.user
+    unless user_logged_in? && (current_user == @blog.user || current_user.admin?)
       flash[:alert] = "You don't have permission to perform this action."
       redirect_to blogs_path
     end

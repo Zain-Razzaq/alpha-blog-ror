@@ -3,7 +3,7 @@
     <p class="blog-author">By <strong><%= @blog.user.name %></strong> on <%= @blog.created_at.strftime("%B %d, %Y") %></p>
   <p class="blog-content"><%= simple_format(@blog.content) %></p>
 
-  <% if user_logged_in? && current_user == @blog.user %>
+  <% if user_logged_in? && (current_user == @blog.user || current_user.admin?) %>
     <div class="blog-actions">
       <%= link_to "Edit", edit_blog_path(@blog), class: "btn edit-btn" %>
       <%= button_to "Delete", blog_path(@blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn delete-btn", style: "margin: 0;" %>
