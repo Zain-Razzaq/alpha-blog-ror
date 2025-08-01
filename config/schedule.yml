@@ -1,0 +1,4 @@
+delete_last_blog_job:
+  cron: "0 5 * * *" 
+  class: "DeleteLastBlogJob"
+  queue: "default"

@@ -40,6 +40,11 @@ class BlogsController < ApplicationController
     redirect_to blogs_url, notice: 'Blog was successfully destroyed.'
   end
 
+  def delete_last
+    DeleteLastBlogJob.perform_later
+    redirect_to blogs_path, notice: 'Last blog deleted.'
+  end
+
   private
 
   def set_blog
