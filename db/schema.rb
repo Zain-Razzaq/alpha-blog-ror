@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_31_152450) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_05_072118) do
+  create_table "blog_categories", force: :cascade do |t|
+    t.integer "blog_id", null: false
+    t.integer "category_id", null: false
+    t.index ["blog_id"], name: "index_blog_categories_on_blog_id"
+    t.index ["category_id"], name: "index_blog_categories_on_category_id"
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,4 +38,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_152450) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
   end
+
+  add_foreign_key "blog_categories", "blogs"
+  add_foreign_key "blog_categories", "categories"
 end

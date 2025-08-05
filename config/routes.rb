@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'home#index'
  
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
-  
+
+  resources :categories, only: %i[index show new create destroy]
+
   mount Sidekiq::Web => '/sidekiq'
 end

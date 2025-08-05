@@ -1,0 +1,29 @@
+
+ <div class="blog-list">
+  <% blogs.each do |blog| %>
+    <div class="blog-card">
+      <%= link_to truncate(blog.title, length: 20), blog_path(blog), class: "blog-link" %>
+      <p><%= truncate(blog.content, length: 150) %></p>
+
+      <% if blog.categories.any? %>
+        <p class="blog-categories">
+          Categories:
+          <% blog.categories.each do |category| %>
+            <%= link_to category.name, category_path(category), class: "category-tag" %>
+          <% end %>
+        </p>
+      <% end %>
+
+      <p class="blog-author">
+        By <strong><%= blog.user.name %></strong> on <%= blog.created_at.strftime("%B %d, %Y") %>
+      </p>
+
+      <% if user_logged_in? && (current_user == blog.user || current_user.admin?) %>
+        <div class="card-actions">
+          <%= link_to "Edit", edit_blog_path(blog), class: "btn edit-btn" %>
+          <%= button_to "Delete", blog_path(blog), method: :delete, class: "btn delete-btn", style: "margin: 0;" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

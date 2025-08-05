@@ -1,6 +1,14 @@
 <div class="blog-details">
   <h2><%= @blog.title %></h2>
-    <p class="blog-author">By <strong><%= @blog.user.name %></strong> on <%= @blog.created_at.strftime("%B %d, %Y") %></p>
+  <% if @blog.categories.any? %>
+    <p class="blog-categories">
+      Categories:
+      <% @blog.categories.each do |category| %>
+        <%= link_to category.name, category_path(category), class: "category-tag" %>
+      <% end %>
+    </p>
+  <% end %>
+  <p class="blog-author">By <strong><%= @blog.user.name %></strong> on <%= @blog.created_at.strftime("%B %d, %Y") %></p>
   <p class="blog-content"><%= simple_format(@blog.content) %></p>
 
   <% if user_logged_in? && (current_user == @blog.user || current_user.admin?) %>
@@ -10,3 +18,4 @@
     </div>
   <% end %>
 </div>
+

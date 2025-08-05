@@ -4,18 +4,5 @@
   <p><strong>Email:</strong> <%= @user.email %></p>
 
   <h2>Blogs by <%= @user.name %></h2>
-  <div class="blog-list">
-    <% @user.blogs.each do |blog| %>
-      <div class="blog-card">
-            <%= link_to truncate(blog.title, length: 20), blog_path(blog), class: "blog-link" %>
-            <p><%= truncate(blog.content, length: 150) %></p>
-            <p class="blog-author">By <strong><%= blog.user.name %></strong> on <%= blog.created_at.strftime("%B %d, %Y") %></p>
-
-            <div class="card-actions">
-                <%= link_to "Edit", edit_blog_path(blog), class: "btn edit-btn" %>
-                <%= button_to "Delete", blog_path(blog), method: :delete, class: "btn delete-btn", style: "margin: 0;" %>
-            </div>
-        </div>
-    <% end %>
-  </div>
+  <%= render 'shared/blog_cards_list', blogs: @user.blogs %>
 </div>
