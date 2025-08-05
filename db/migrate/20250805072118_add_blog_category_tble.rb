@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddBlogCategoryTble < ActiveRecord::Migration[8.0]
   def change
     create_table :blog_categories do |t|

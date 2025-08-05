@@ -23,8 +23,8 @@ gem 'jbuilder'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Job for background processing
-gem 'sidekiq'
 gem 'redis'
+gem 'sidekiq'
 gem 'sidekiq-cron'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -28,6 +28,5 @@ module AlphaBlogsRor
 
     # config/application.rb
     config.active_job.queue_adapter = :sidekiq
-
   end
 end

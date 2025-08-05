@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
-  before_action :require_admin, only: [:new, :create, :destroy]
-  before_action :set_category, only: [:show, :destroy]
+  before_action :require_admin, only: %i[new create destroy]
+  before_action :set_category, only: %i[show destroy]
 
   def index
     @categories = Category.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @category = Category.new
@@ -24,8 +25,9 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_path, notice: "Category deleted successfully."
+    redirect_to categories_path, notice: 'Category deleted successfully.'
   end
+
   private
 
   def category_params
@@ -37,9 +39,9 @@ class CategoriesController < ApplicationController
   end
 
   def require_admin
-    unless user_logged_in? && current_user.admin?
-      flash[:alert] = "You don't have permission to perform this action."
-      redirect_to categories_path
-    end
+    return if user_logged_in? && current_user.admin?
+
+    flash[:alert] = "You don't have permission to perform this action."
+    redirect_to categories_path
   end
 end
