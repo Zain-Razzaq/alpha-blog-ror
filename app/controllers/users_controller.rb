@@ -1,9 +1,33 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, except: %i[new create]
+  skip_before_action :verify_authenticity_token
+
   def show
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+      if @user
+        render json: @user.slice(:id, :name, :email, :admin, :created_at), status: :ok
+      else
+        render json: { message: 'User not found' }, status: :not_found
+      end
+    rescue => e
+      render json: { message: "Something went wrong: #{e.message}" }, status: :internal_server_error
+    end
+  end
+
+  def user_blogs
+    begin
+      @user = User.find(params[:id])
+      if @user
+        @blogs = @user.blogs.includes(:user).includes(:categories).as_json(include: { user: { only: [:id, :name, :email] }, categories: { only: [:id, :name] } })
+        render json: @blogs, status: :ok
+      else
+        render json: { message: 'User not found' }, status: :not_found
+      end
+    rescue => e
+      render json: { message: "Something went wrong: #{e.message}" }, status: :internal_server_error
+    end
   end
 
   def new
@@ -14,19 +38,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to blogs_path, notice: 'User was successfully created.'
+      render json: @user.slice(:id, :name, :email, :admin), status: :created
     else
-      redirect_to register_path, alert: @user.errors.full_messages.to_sentence
+      render json: {
+        message: @user.errors.full_messages.to_sentence
+    }, status: :unprocessable_entity
     end
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.permit(:name, :email, :password)
   end
 end
